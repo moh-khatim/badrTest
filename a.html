@@ -1,0 +1,731 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>
+        Secure payment form</title>
+    <meta http-equiv="Page-Enter" content="blendTrans(Duration=0.3)" />
+    <meta http-equiv="Page-Exit" content="blendTrans(Duration=0.3)" />
+    <link
+        href="https://emea.ttinteractive.com/Zenith/FrontOffice/Content//BadrAirlines/bootstrap?v=zxaUkOStzyrpx_McqWm64e7sNNXJTbGYSA1Rq5zFECQ1"
+        rel="stylesheet" />
+    <link type="text/css" rel="stylesheet"
+        href="https://emea.ttinteractive.com/library/include/css/PaymentWebService.css" />
+
+    <link type="text/css" rel="stylesheet"
+        href="https://emea.ttinteractive.com/BadrAirlines/include_site/css/aeropack.css" />
+    <link type="text/css" rel="stylesheet" href="https://emea.ttinteractive.com/library/include/css/colorbox.css" />
+    <link type="text/css" rel="stylesheet"
+        href="https://emea.ttinteractive.com/library/include/css/themes/aeropackbo/ui.core.css" />
+    <link type="text/css" rel="stylesheet"
+        href="https://emea.ttinteractive.com/BadrAirlines/include_site/css/ui/ui.core.css" />
+    <link type="text/css" rel="stylesheet"
+        href="https://emea.ttinteractive.com/library/include/css/themes/aeropackbo/ui.theme.css" />
+    <link type="text/css" rel="stylesheet"
+        href="https://emea.ttinteractive.com/BadrAirlines/include_site/css/ui/ui.theme.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="shorcut icon" type="image/x-icon" href="https://emea.ttinteractive.com/BadrAirlines/favicon.ico">
+    <link rel="shorcut icon" rev="made" href="https://emea.ttinteractive.com/BadrAirlines/favicon.ico">
+
+    <script type="text/javascript" src="https://emea.ttinteractive.com/library/include/js/jquery/jquery.js"></script>
+
+    <script type="text/javascript"
+        src="https://emea.ttinteractive.com/Library/include/js/jquery/jquery.colorbox-min.js"></script>
+
+    <script src="https://emea.ttinteractive.com/newui/UI/script/plugins/jquery.freezeheader.js"
+        type="text/javascript"></script>
+    <script src="https://emea.ttinteractive.com/newui/UI/script/jquery-1.11.0.js" type="text/javascript"></script>
+    <script src="https://emea.ttinteractive.com/newui/UI/script/jqueryUI-1.10.4/jquery-ui.min.js"
+        type="text/javascript"></script>
+    <script src="https://emea.ttinteractive.com/newui/UI/script/jqueryUI-1.10.4/i18n/jquery-ui-i18n.min.js"
+        type="text/javascript"></script>
+    <script src="https://emea.ttinteractive.com/newui/UI/script/embededOnlinePayment.js?v=1"
+        type="text/javascript"></script>
+
+    <script language="javascript">
+        function DisableButtons(btValid, btCancel) {
+            document.getElementById(btValid).onclick = function () { return false; };
+            document.getElementById(btCancel).onclick = function () { return false; };
+            jQuery(".CBtdValidation .loader").css("display", "block");
+            jQuery(".ui-forward").css("display", "none");
+
+            return true;
+        }
+
+        function IsValid() {
+            value = true;
+
+            $(".cardNumError").css("display", "none")
+
+            var cardNumber = document.getElementById('UsrCreditCardInfoControl_fvCreditCardInfo_txtCardNum').value;
+
+            var PrivacyPolicyCheck = document.getElementById('PrivacyPolicyCheck');
+
+            if (cardNumber == '') {
+                $(".cardNumError").css("display", "block")
+                value = false;
+            }
+
+
+            if (!PrivacyPolicyCheck.checked) {
+
+                document.getElementById('LabelForPrivacyPolicyCheck').style.color = 'red';
+                document.getElementById('ControlPrivacyPolicyCheck').style.display = 'block';
+                value = false;
+            }
+
+            return value
+        }
+    </script>
+    <style>
+        .cardNumError {
+            display: none;
+            text-align: center !important;
+        }
+
+        .cardHolderError {
+            display: none;
+            text-align: center !important;
+        }
+
+        .cardHolderFirstNameError {
+            display: none;
+            text-align: center !important;
+        }
+
+        .cardCvvError {
+            display: none;
+            text-align: center !important;
+        }
+
+        .labelAmount {
+            font-size: 13px !important;
+            font-weight: 800 !important;
+        }
+
+        .checkBoxLabel {
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        h2 span {
+            font-size: 15px !important;
+            font-weight: 500 !important;
+            text-align: center !important;
+            float: none !important;
+        }
+
+        .ui-state-error span {
+            float: left !important;
+        }
+
+        table tr td span {
+            font-weight: bold !important;
+            color: #000000 !important;
+            text-align: right !important;
+            font-size: 12px;
+            font-family: "Open Sans", Arial, Helvetica, Verdana, sans-serif !important;
+        }
+
+        .largeur1 {
+            width: 100% !important;
+        }
+
+        .largeur2 {
+            width: 100% !important;
+        }
+
+        .ui-tableList th {
+            background-color: Transparent !important;
+        }
+
+        .buttons {
+            width: 90% !important;
+        }
+
+        .btn {
+            padding: 8px 14px !important;
+            color: #FFFFFF !important;
+        }
+
+        .btn-warning {
+            background-color: #E09C3C !important;
+            border-color: #E09C3C !important;
+        }
+
+        .btn-success {
+            background-color: #5CB85C !important;
+            border-color: #5CB85C !important;
+        }
+
+        .ui-buttons {
+            padding: 1px !important;
+        }
+
+        /* MAIN */
+        #mainPayment {
+            position: relative;
+            margin: auto;
+            margin-top: 10px;
+            font-size: 12px;
+            width: 90%;
+        }
+
+        #mainPayment .content h2 {
+            font-size: 15px;
+            margin: 0px;
+            padding-top: 5px;
+            padding-bottom: 15px;
+        }
+
+        #mainPayment .content h3 {
+            font-size: 17px;
+            margin: 0px;
+            padding-top: 5px;
+            color: #666666;
+        }
+
+        #mainPayment .content h4 {
+            font-size: 14px;
+            margin: 0px;
+            padding-top: 5px;
+            color: #666666;
+        }
+
+        #mainPayment .content .ui-state-error {
+            border: none;
+            background: none;
+            padding-top: 2px;
+            color: #FF0000 !important;
+            font-weight: normal !important
+        }
+
+        #mainPayment .content .ui-widget-content .ui-state-error {
+            border: none;
+            background: none;
+            padding-top: 2px;
+        }
+
+        #mainPayment .content p {
+            text-align: justify;
+        }
+
+        #mainPayment .content dl {
+            margin-left: 1ex;
+        }
+
+        #mainPayment .content dt {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        #mainPayment .content ul {
+            /*padding-left: 40px;*/
+        }
+
+        #mainPayment .content img {
+            border: 0;
+            margin: 20px;
+            display: block;
+        }
+
+        #mainPayment .content pre {
+            font-size: 14px;
+        }
+
+        #mainPayment .content table {
+            border-collapse: collapse;
+            empty-cells: show;
+            padding: 4px;
+            margin-top: 1ex;
+        }
+
+        #mainPayment .content th {
+            padding: 4px;
+        }
+
+        #mainPayment .content td {
+            padding-top: 2px;
+            padding-bottom: 2xp;
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+
+        #mainPayment .content .ui-helpLink {
+            float: left;
+            left: 5px;
+        }
+
+        #mainPayment .content .ui-helpLink acronym {
+            float: left;
+            margin-left: 0;
+            margin-top: 1px;
+        }
+
+        #mainPayment .content .loader {
+            background: #fff url(/library/include/images/ui/loader.gif) no-repeat center;
+            height: 420px;
+            left: 0px;
+            position: absolute;
+            top: 155px;
+            width: 100%;
+            display: none;
+        }
+
+        #mainPayment .copyright {
+            font-size: 10px;
+            background-color: #eff3f9;
+            border: 1pt solid black;
+            margin-bottom: 15px;
+            padding: 6px 15px 6px 15px;
+        }
+
+        /* AREAS */
+        #mainPayment .content .usrOrderControlPanel {
+            width: 100%;
+            padding-left: 4px;
+            background-color: #f0f0f0 !important;
+        }
+
+        #mainPayment .content .usrCreditCardInfoControlPanel {
+            width: 100%;
+            background-color: #f0f0f0 !important;
+        }
+
+        #mainPayment .content .usrCreditCardInfoControlPanel input {
+            position: relative;
+            left: 5px;
+        }
+
+        #mainPayment .content .usrCreditCardInfoControlPanel acronym {
+            float: left;
+        }
+
+        #mainPayment .content .usrCreditCardInfoControlPanel span {
+            float: right;
+        }
+
+        #mainPayment .content .miscMessages {
+            width: 90%;
+        }
+
+        #mainPayment .content .CBtdValidation {
+            width: 58%;
+            padding-left: 4px;
+            float: right;
+        }
+
+        #mainPayment .content .divCreditCardExpiryDateControl {
+            width: 150px;
+            float: left;
+        }
+
+        #mainPayment .content .divCreditCardCardTypeControl {
+            width: 100px;
+            float: left;
+        }
+
+        @media(max-width:767px) {
+            .largeur {
+                width: 164%;
+            }
+
+            .largeur1 {
+                width: 85% !important;
+            }
+
+            .largeur2 {
+                width: 132% !important;
+            }
+        }
+
+        @media(max-width:700px) {
+            .largeur {
+                width: 100%;
+            }
+
+            .largeur1 {
+                width: 85% !important;
+            }
+
+            .largeur2 {
+                width: 132% !important;
+            }
+        }
+
+        @media(max-width:635px) {
+            .largeur {
+                width: 100%;
+            }
+
+            .largeur1 {
+                width: 77% !important;
+            }
+
+            .largeur2 {
+                width: 119% !important;
+            }
+        }
+
+        @media(max-width:579px) {
+            .largeur {
+                width: 72% !important;
+            }
+
+            .largeur1 {
+                width: 70% !important;
+            }
+
+            .largeur2 {
+                width: 108% !important;
+            }
+        }
+
+        @media(max-width:550px) {
+            .largeur {
+                width: 67% !important;
+            }
+
+            .largeur1 {
+                width: 67% !important;
+            }
+
+            .largeur2 {
+                width: 104% !important;
+            }
+        }
+
+        @media(max-width:500px) {
+            .largeur {
+                width: 60% !important;
+            }
+
+            .largeur1 {
+                width: 60% !important;
+            }
+
+            .largeur2 {
+                width: 100% !important;
+            }
+        }
+
+        @media(max-width:499px) {
+            .largeur {
+                width: 60% !important;
+            }
+
+            .largeur1 {
+                width: 60% !important;
+            }
+
+            .largeur2 {
+                width: 97% !important;
+            }
+        }
+
+        @media(max-width:460px) {
+            .largeur {
+                width: 56% !important;
+            }
+
+            .largeur1 {
+                width: 56% !important;
+
+            }
+
+            .largeur2 {
+                width: 90% !important;
+
+            }
+        }
+
+        @media(max-width:420px) {
+            .largeur {
+                width: 40% !important;
+            }
+
+            .largeur1 {
+                width: 39% !important;
+            }
+
+            .largeur2 {
+                width: 68% !important;
+            }
+
+            .labelMobile {
+                width: 100% !important;
+            }
+
+            .labelMobileSelect {
+                width: 150% !important;
+            }
+
+            .buttonResponsive {
+                position: absolute;
+                top: 95% !important
+            }
+        }
+
+        @media(max-width:380px) {
+            .largeur {
+                width: 46% !important;
+            }
+
+            .largeur1 {
+                width: 45% !important;
+
+            }
+
+            .largeur2 {
+                width: 73% !important;
+
+            }
+
+            .labelMobile {
+                width: 100% !important;
+            }
+
+            .labelMobileSelect {
+                width: 150% !important;
+            }
+        }
+
+        @media(max-width:350px) {
+            .largeur {
+                width: 42% !important;
+            }
+
+            .largeur1 {
+                width: 42% !important;
+
+            }
+
+            .largeur2 {
+                width: 68% !important;
+
+            }
+
+            .labelMobile {
+                width: 100% !important;
+            }
+
+            .labelMobileSelect {
+                width: 150% !important;
+            }
+        }
+
+        @media(max-width:320px) {
+            .largeur {
+                width: 42% !important;
+            }
+
+            .largeur1 {
+                width: 42% !important;
+
+            }
+
+            .largeur2 {
+                width: 42% !important;
+
+            }
+
+            .labelMobile {
+                width: 100% !important;
+            }
+
+            .labelMobileSelect {
+                width: 150% !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mainPayment">
+        <div align="left" style="position:absolute;">
+            <img style="width: auto; height: 150px;"
+                src="https://emea.ttinteractive.com/contenu/payment/logos/OnlinePayment_iVeri.gif" />
+            <br />
+        </div>
+        <div align="right" style="position:relative;">
+            <img style="width: auto; height: 150px;"
+                src="https://emea.ttinteractive.com/BadrAirlines/images_site/logo_billet.png" />
+            <br />
+        </div>
+
+        <div class="title largeur">
+            <span id="lblMainTitle">Secure payment form</span>
+        </div>
+        <div class="content largeur">
+            <form name="form1" method="post"
+                action="https://emea.ttinteractive.com/TTIDotNet/WebService/Internal/OnlinePaymentWebService/iVeriResponse.ashx?paramPlus=EAAAAHh77wPodFYWLXehzDPQKYvb0B24gPDGTt%2f3ZOgjZxB2"
+                onsubmit="javascript:return WebForm_OnSubmit();" id="form1" target="_top">
+                <input type="hidden" name="DoPayment" value="1" />
+                <input type="hidden" name="PNRLastModified" value="2022-12-21 12:13:27" />
+                <script type="text/javascript">
+
+                    function WebForm_OnSubmit() {
+                        if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false; DisableButtons('btValidate', 'btCancel');
+                        return true;
+                    }
+                </script>
+
+                <div class="usrOrderControlPanel">
+
+
+                    <table class="ui-tableList largeur1">
+                        <tr>
+                            <th colspan="2" style="text-align: center">
+                                <h2><span id="UsrOrderControl_lblMontantLabel">Payment Checkout</span></h2>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right" width="50%">
+                                <span id="UsrOrderControl_lblMontantLabel" class="CBlabel labelAmount">Amount:</span>
+
+                            </td>
+                            <td style="text-align: left">
+                                <span id="UsrOrderControl_lblMontant" class="CBlabel labelAmount">200.00 USD</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right" width="50%">
+                                <span id="UsrOrderControl_lblMontantLabel" class="CBlabel labelAmount">Your
+                                    order:</span>
+
+                            </td>
+                            <td style="text-align: left">
+                                <span id="UsrOrderControl_lblMontant"
+                                    class="CBlabel labelAmount">792238_3068_01QBDG</span>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br />
+                </div>
+                <div class="usrCreditCardInfoControlPanel">
+
+
+                    <table style="margin-left: auto; margin-right: auto" class="ui-tableList largeur2">
+                        <tr>
+                            <th colspan="2" style="text-align: center">
+                                <h2><span
+                                        id="UsrCreditCardInfoControl_fvCreditCardInfo_lblCreditCardInfoTitleTable">Payment
+                                        information</span></h2>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" class="cardHolderError">
+                                <span id="UsrCreditCardInfoControl_fvCreditCardInfo_regCardholder"
+                                    class="ui-state-error" style="color:Red;">please enter card holder name.</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%">
+                                <span id="UsrCreditCardInfoControl_fvCreditCardInfo_lblCardNum">Card number:</span>
+                            </td>
+                            <td>
+                                <input name="CARDNUMBER" type="text" size="30"
+                                    id="UsrCreditCardInfoControl_fvCreditCardInfo_txtCardNum"
+                                    class="form-control field-text-box single-line TtiCheckNumeric CreditCardFormat"
+                                    style="width:150px;" TtiNbIntDigit="20" TtiNbDecimalDigit="0" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="cardNumError">
+                                <span id="UsrCreditCardInfoControl_fvCreditCardInfo_regCardNum" class="ui-state-error"
+                                    style="color:Red;">Invalid card number or card type.</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span id="UsrCreditCardInfoControl_fvCreditCardInfo_lblExpirency">Card expiry date
+                                    (MM/YYYY):</span>
+                            </td>
+                            <td style="text-align: left">
+                                <div class="divCreditCardExpiryDateControl">
+                                    <div id="UsrCreditCardInfoControl_fvCreditCardInfo_CreditCardExpiryDateControl1">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <select name="EXPIRYMONTH"
+                                                        id="UsrCreditCardInfoControl_fvCreditCardInfo_CreditCardExpiryDateControl1_ctl00"
+                                                        class="form-control" style="width:60px;">
+                                                        <option value="01">01</option>
+                                                        <option value="02">02</option>
+                                                        <option value="03">03</option>
+                                                        <option value="04">04</option>
+                                                        <option value="05">05</option>
+                                                        <option value="06">06</option>
+                                                        <option value="07">07</option>
+                                                        <option value="08">08</option>
+                                                        <option value="09">09</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12" selected="selected">12</option>
+                                                    </select>
+                                                </td>
+                                                <td>/</td>
+                                                <td>
+                                                    <select name="EXPIRYYEAR"
+                                                        id="UsrCreditCardInfoControl_fvCreditCardInfo_CreditCardExpiryDateControl1_ctl01"
+                                                        class="form-control" style="width:70px;">
+                                                        <option value="2022" selected="selected">2022</option>
+                                                        <option value="2023">2023</option>
+                                                        <option value="2024">2024</option>
+                                                        <option value="2025">2025</option>
+                                                        <option value="2026">2026</option>
+                                                        <option value="2027">2027</option>
+                                                        <option value="2028">2028</option>
+                                                        <option value="2029">2029</option>
+                                                        <option value="2030">2030</option>
+                                                        <option value="2031">2031</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+
+
+                </div>
+                <div class="checkBoxLabel">
+                    <span id="ControlPrivacyPolicyCheck" style="color:Red;display:none;">*</span>
+                    <input type="checkbox" id="PrivacyPolicyCheck" name="PrivacyPolicyCheck">
+                    <span id="LabelForPrivacyPolicyCheck" for="PrivacyPolicyCheck">I have checked that the payment
+                        details are correct.</span>
+
+                </div>
+                <div class="CBtdValidation ui-buttons ">
+                    <ul class="buttons">
+                        <li>
+                            <input type="button" name="btCancel" value="Cancel" id="btCancel" class="btn btn-warning"
+                                onclick="DisableButtons('btValidate', 'btCancel');window.top.location.href='https://emea.ttinteractive.com/TTIDotNet/WebService/Internal/OnlinePaymentWebService/iVeriResponse.ashx?paramPlus=EAAAAADNlQi6X%2bbrCPqbVfNLZADU2GnlaVIQKkL7vhI5uhT2&cancel=1'" />
+                        <li>&nbsp;</li>
+                        <li>
+                            <input type="submit" name="btValidate" value="Validate"
+                                onclick="javascript:return IsValid();" id="btValidate" class="btn btn-success" />
+                        </li>
+                        </li>
+                    </ul>
+                    <div class="loader">
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
