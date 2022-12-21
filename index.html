@@ -327,6 +327,219 @@
             width: 100px;
             float: left;
         }
+
+        @media(max-width:767px) {
+            .largeur {
+                width: 164%;
+            }
+
+            .largeur1 {
+                width: 85% !important;
+            }
+
+            .largeur2 {
+                width: 132% !important;
+            }
+        }
+
+        @media(max-width:700px) {
+            .largeur {
+                width: 100%;
+            }
+
+            .largeur1 {
+                width: 85% !important;
+            }
+
+            .largeur2 {
+                width: 132% !important;
+            }
+        }
+
+        @media(max-width:635px) {
+            .largeur {
+                width: 100%;
+            }
+
+            .largeur1 {
+                width: 77% !important;
+            }
+
+            .largeur2 {
+                width: 119% !important;
+            }
+        }
+
+        @media(max-width:579px) {
+            .largeur {
+                width: 72% !important;
+            }
+
+            .largeur1 {
+                width: 70% !important;
+            }
+
+            .largeur2 {
+                width: 108% !important;
+            }
+        }
+
+        @media(max-width:550px) {
+            .largeur {
+                width: 67% !important;
+            }
+
+            .largeur1 {
+                width: 67% !important;
+            }
+
+            .largeur2 {
+                width: 104% !important;
+            }
+        }
+
+        @media(max-width:500px) {
+            .largeur {
+                width: 60% !important;
+            }
+
+            .largeur1 {
+                width: 60% !important;
+            }
+
+            .largeur2 {
+                width: 100% !important;
+            }
+        }
+
+        @media(max-width:499px) {
+            .largeur {
+                width: 60% !important;
+            }
+
+            .largeur1 {
+                width: 60% !important;
+            }
+
+            .largeur2 {
+                width: 97% !important;
+            }
+        }
+
+        @media(max-width:460px) {
+            .largeur {
+                width: 56% !important;
+            }
+
+            .largeur1 {
+                width: 56% !important;
+
+            }
+
+            .largeur2 {
+                width: 90% !important;
+
+            }
+        }
+
+        @media(max-width:420px) {
+            .largeur {
+                width: 40% !important;
+            }
+
+            .largeur1 {
+                width: 39% !important;
+            }
+
+            .largeur2 {
+                width: 68% !important;
+            }
+
+            .labelMobile {
+                width: 100% !important;
+            }
+
+            .labelMobileSelect {
+                width: 150% !important;
+            }
+
+            .buttonResponsive {
+                position: absolute;
+                top: 95% !important
+            }
+        }
+
+        @media(max-width:380px) {
+            .largeur {
+                width: 46% !important;
+            }
+
+            .largeur1 {
+                width: 45% !important;
+
+            }
+
+            .largeur2 {
+                width: 73% !important;
+
+            }
+
+            .labelMobile {
+                width: 100% !important;
+            }
+
+            .labelMobileSelect {
+                width: 150% !important;
+            }
+        }
+
+        @media(max-width:350px) {
+            .largeur {
+                width: 42% !important;
+            }
+
+            .largeur1 {
+                width: 42% !important;
+
+            }
+
+            .largeur2 {
+                width: 68% !important;
+
+            }
+
+            .labelMobile {
+                width: 100% !important;
+            }
+
+            .labelMobileSelect {
+                width: 150% !important;
+            }
+        }
+
+        @media(max-width:320px) {
+            .largeur {
+                width: 42% !important;
+            }
+
+            .largeur1 {
+                width: 42% !important;
+
+            }
+
+            .largeur2 {
+                width: 42% !important;
+
+            }
+
+            .labelMobile {
+                width: 100% !important;
+            }
+
+            .labelMobileSelect {
+                width: 150% !important;
+            }
+        }
     </style>
 </head>
 
@@ -334,7 +547,7 @@
     <div id="mainPayment">
         <div align="left" style="position:absolute;">
             <img style="width: auto; height: 150px;"
-                src="https://emea.ttinteractive.com/library/include/images/logos/OnlinePayment_iVeri.gif" />
+                src="https://emea.ttinteractive.com/contenu/payment/logos/OnlinePayment_iVeri.gif" />
             <br />
         </div>
         <div align="right" style="position:relative;">
@@ -343,15 +556,15 @@
             <br />
         </div>
 
-        <!-- <div class="title largeur"> -->
-        <!-- <span id="lblMainTitle">Secure payment form</span> -->
-        <!-- </div> -->
+        <div class="title largeur">
+            <span id="lblMainTitle">Secure payment form</span>
+        </div>
         <div class="content largeur">
             <form name="form1" method="post"
-                action="https://emea.ttinteractive.com/TTIDotNet/WebService/Internal/OnlinePaymentWebService/iVeriResponse.ashx?paramPlus=EAAAALQneAhU6y%2fPoZAlLHNBmodR0i5pfVcN8Qit%2bA1epwuR"
+                action="https://emea.ttinteractive.com/TTIDotNet/WebService/Internal/OnlinePaymentWebService/iVeriResponse.ashx?paramPlus=EAAAAHh77wPodFYWLXehzDPQKYvb0B24gPDGTt%2f3ZOgjZxB2"
                 onsubmit="javascript:return WebForm_OnSubmit();" id="form1" target="_top">
                 <input type="hidden" name="DoPayment" value="1" />
-                <input type="hidden" name="PNRLastModified" value="2022-12-04 10:24:27" />
+                <input type="hidden" name="PNRLastModified" value="2022-12-21 12:13:27" />
                 <script type="text/javascript">
 
                     function WebForm_OnSubmit() {
@@ -375,7 +588,7 @@
 
                             </td>
                             <td style="text-align: left">
-                                <span id="UsrOrderControl_lblMontant" class="CBlabel labelAmount">310.00 USD</span>
+                                <span id="UsrOrderControl_lblMontant" class="CBlabel labelAmount">200.00 USD</span>
                             </td>
                         </tr>
                         <tr>
@@ -386,7 +599,7 @@
                             </td>
                             <td style="text-align: left">
                                 <span id="UsrOrderControl_lblMontant"
-                                    class="CBlabel labelAmount">775501_3068_01PFYO</span>
+                                    class="CBlabel labelAmount">792238_3068_01QBDG</span>
                             </td>
                         </tr>
                     </table>
@@ -496,7 +709,7 @@
                     <ul class="buttons">
                         <li>
                             <input type="button" name="btCancel" value="Cancel" id="btCancel" class="btn btn-warning"
-                                onclick="DisableButtons('btValidate', 'btCancel');window.top.location.href='https://emea.ttinteractive.com/TTIDotNet/WebService/Internal/OnlinePaymentWebService/iVeriResponse.ashx?paramPlus=EAAAACC0kHlRhHgBc3ZhCLpIsJXNWoeVhLoNCAS38QHrNJo%2b&cancel=1'" />
+                                onclick="DisableButtons('btValidate', 'btCancel');window.top.location.href='https://emea.ttinteractive.com/TTIDotNet/WebService/Internal/OnlinePaymentWebService/iVeriResponse.ashx?paramPlus=EAAAAADNlQi6X%2bbrCPqbVfNLZADU2GnlaVIQKkL7vhI5uhT2&cancel=1'" />
                         <li>&nbsp;</li>
                         <li>
                             <input type="submit" name="btValidate" value="Validate"
@@ -512,3 +725,7 @@
 
             </form>
         </div>
+    </div>
+</body>
+
+</html>
